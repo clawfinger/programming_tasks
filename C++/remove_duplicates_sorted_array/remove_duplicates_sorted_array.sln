@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "remove_duplicates_sorted_array", "remove_duplicates_sorted_array\remove_duplicates_sorted_array.vcxproj", "{DD93108A-38AC-420B-ADDC-6A8D383AAE6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD93108A-38AC-420B-ADDC-6A8D383AAE6F}.Debug|x64.ActiveCfg = Debug|x64
+		{DD93108A-38AC-420B-ADDC-6A8D383AAE6F}.Debug|x64.Build.0 = Debug|x64
+		{DD93108A-38AC-420B-ADDC-6A8D383AAE6F}.Debug|x86.ActiveCfg = Debug|Win32
+		{DD93108A-38AC-420B-ADDC-6A8D383AAE6F}.Debug|x86.Build.0 = Debug|Win32
+		{DD93108A-38AC-420B-ADDC-6A8D383AAE6F}.Release|x64.ActiveCfg = Release|x64
+		{DD93108A-38AC-420B-ADDC-6A8D383AAE6F}.Release|x64.Build.0 = Release|x64
+		{DD93108A-38AC-420B-ADDC-6A8D383AAE6F}.Release|x86.ActiveCfg = Release|Win32
+		{DD93108A-38AC-420B-ADDC-6A8D383AAE6F}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E52A4F6-F90E-40F1-8467-3A21FD2B5C4A}
+	EndGlobalSection
+EndGlobal
