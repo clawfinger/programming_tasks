@@ -70,40 +70,6 @@ int maxPoints(std::vector<std::vector<int>>& points) {
             max = maxForPoint;
         }
     }
-
-
-    //for (auto& entry : pointsAngles) {
-    //    const auto& points = entry.second;
-    //    int currentLength = 0;
-    //    const auto& start = points.begin();
-    //    const auto& end = std::prev(points.end());
-
-    //    for (auto it = points.begin(); it != points.end(); it++) {
-
-    //        if (start->first == end->first) {
-    //            if (it->first == start->first) {
-    //                currentLength++;
-    //            }
-    //        }
-    //        else if (end->second == start->second) {
-    //            if (it->second == start->second) {
-    //                currentLength++;
-    //            }
-    //        }
-    //        else {
-    //            if ((it->first - start->first) / (end->first - start->first) ==
-    //                (it->second - start->second) / (end->second - start->second)) {
-    //                currentLength++;
-    //            }
-    //        }
-
-
-    //    }
-    //    if (currentLength > max) {
-    //        max = currentLength;
-    //    }
-    //}
-
     return max + 1;
 }
 
