@@ -51,52 +51,77 @@ int main()
     }
     for (long i = 0; i < taskNum; i++) {
         Task task = tasks[i];
-        if (!freeProcs.empty() && !runningProcs.empty()) {
-            uint64_t freeProc = freeProcs.top();
-            RunningProc running = runningProcs.top();
 
-            if (running.freeTime <= task.start && running.proc <= freeProc) {
+        while (true) {
+            if (runningProcs.empty()) {
+                break;
+            }
+            RunningProc currentRunningTask = runningProcs.top();
+            if (currentRunningTask.freeTime <= task.start) {
+                freeProcs.push(currentRunningTask.proc);
                 runningProcs.pop();
-                running.freeTime = task.start + task.duration;
-                runningProcs.push(running);
-                uint64_t totalUpdate = running.proc * task.duration;
-                total += totalUpdate;
             }
             else {
-                freeProcs.pop();
-                RunningProc running;
-                running.freeTime = task.start + task.duration;
-                running.proc = freeProc;
-                runningProcs.push(running);
-                uint64_t totalUpdate = freeProc * task.duration;
-                total += totalUpdate;
-
+                break;
             }
         }
-        else if (!freeProcs.empty()) {
-            uint64_t freeProc = freeProcs.top();
-            freeProcs.pop();
-            RunningProc running;
-            running.freeTime = task.start + task.duration;
-            running.proc = freeProc;
-            runningProcs.push(running);
-            uint64_t totalUpdate = freeProc * task.duration;
-            total += totalUpdate;
-
+        if (freeProcs.empty()) {
+            continue;
         }
-        else {
-            RunningProc running = runningProcs.top();
-
-            if (running.freeTime <= task.start) {
-                runningProcs.pop();
-                running.freeTime = task.start + task.duration;
-                runningProcs.push(running);
-                uint64_t totalUpdate = running.proc * task.duration;
-                total += totalUpdate;
-
-            }
-        }
-
+        uint64_t freeProc = freeProcs.top();
+        freeProcs.pop();
+        RunningProc running;
+        running.freeTime = task.start + task.duration;
+        running.proc = freeProc;
+        runningProcs.push(running);
+        uint64_t totalUpdate = freeProc * task.duration;
+        total += totalUpdate;
     }
     std::cout << total << std::endl;
 }
+//
+//if (!freeProcs.empty() && !runningProcs.empty()) {
+//    uint64_t freeProc = freeProcs.top();
+//    RunningProc running = runningProcs.top();
+//
+//    if (running.freeTime <= task.start && running.proc <= freeProc) {
+//        runningProcs.pop();
+//        running.freeTime = task.start + task.duration;
+//        runningProcs.push(running);
+//        uint64_t totalUpdate = running.proc * task.duration;
+//        total += totalUpdate;
+//    }
+//    else {
+//        freeProcs.pop();
+//        RunningProc running;
+//        running.freeTime = task.start + task.duration;
+//        running.proc = freeProc;
+//        runningProcs.push(running);
+//        uint64_t totalUpdate = freeProc * task.duration;
+//        total += totalUpdate;
+//
+//    }
+//}
+//else if (!freeProcs.empty()) {
+//    uint64_t freeProc = freeProcs.top();
+//    freeProcs.pop();
+//    RunningProc running;
+//    running.freeTime = task.start + task.duration;
+//    running.proc = freeProc;
+//    runningProcs.push(running);
+//    uint64_t totalUpdate = freeProc * task.duration;
+//    total += totalUpdate;
+//
+//}
+//else {
+//    RunningProc running = runningProcs.top();
+//
+//    if (running.freeTime <= task.start) {
+//        runningProcs.pop();
+//        running.freeTime = task.start + task.duration;
+//        runningProcs.push(running);
+//        uint64_t totalUpdate = running.proc * task.duration;
+//        total += totalUpdate;
+//
+//    }
+//}
