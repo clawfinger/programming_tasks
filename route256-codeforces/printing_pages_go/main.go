@@ -31,67 +31,54 @@ func doWork(in *bufio.Reader, out *bufio.Writer) {
 		}
 	}
 	var sb strings.Builder
-	zeroFound := false
-	zeroStart := -1
-	currentZeros := 0
-	builderDirty := false
-	for i := 1; i < len(printedPages); i++ {
-		if printedPages[i] == 0 {
-			if !zeroFound {
-				zeroFound = true
-				zeroStart = i
+
+	firstWrite := true
+	startIndex := 1
+	isOnZero := printedPages[1] == 0
+	for i := 2; i < len(printedPages); i++ {
+		if isOnZero {
+			if printedPages[i] != 0 {
+				if i-startIndex == 1 {
+					if !firstWrite {
+						sb.WriteRune(',')
+					}
+					sb.WriteString(strconv.Itoa(startIndex))
+					firstWrite = false
+				} else {
+					if !firstWrite {
+						sb.WriteRune(',')
+					}
+					sb.WriteString(strconv.Itoa(startIndex))
+					sb.WriteRune('-')
+					sb.WriteString(strconv.Itoa(i - 1))
+					firstWrite = false
+				}
 			}
-			currentZeros++
 		} else {
-			if zeroFound {
-				if currentZeros == 1 {
-					if builderDirty {
-						sb.WriteRune(',')
-					}
-
-					sb.WriteString(strconv.Itoa(zeroStart))
-					builderDirty = true
-				} else {
-					end := zeroStart + currentZeros - 1
-					if builderDirty {
-						sb.WriteRune(',')
-					}
-					separator := '-'
-					sb.WriteString(strconv.Itoa(zeroStart))
-					sb.WriteRune(separator)
-					sb.WriteString(strconv.Itoa(end))
-					builderDirty = true
-				}
-			}
-			zeroFound = false
-			currentZeros = 0
-		}
-
-		if i == pageCount {
-			if zeroFound {
-				if currentZeros == 1 {
-					if builderDirty {
-						sb.WriteRune(',')
-					}
-					sb.WriteString(strconv.Itoa(zeroStart))
-					builderDirty = true
-
-				} else {
-					if builderDirty {
-						sb.WriteRune(',')
-					}
-					end := zeroStart + currentZeros - 1
-					separator := '-'
-					sb.WriteString(strconv.Itoa(zeroStart))
-					sb.WriteRune(separator)
-					sb.WriteString(strconv.Itoa(end))
-					builderDirty = true
-
-				}
+			if printedPages[i] == 0 {
+				startIndex = i
 			}
 		}
+		isOnZero = printedPages[i] == 0
 	}
 
+	if isOnZero {
+		if startIndex == len(printedPages)-1 {
+			if !firstWrite {
+				sb.WriteRune(',')
+			}
+			sb.WriteString(strconv.Itoa(startIndex))
+			firstWrite = false
+		} else {
+			if !firstWrite {
+				sb.WriteRune(',')
+			}
+			sb.WriteString(strconv.Itoa(startIndex))
+			sb.WriteRune('-')
+			sb.WriteString(strconv.Itoa(len(printedPages)))
+			firstWrite = false
+		}
+	}
 	res := sb.String()
 	sb.Reset()
 	fmt.Fprintln(out, res)
