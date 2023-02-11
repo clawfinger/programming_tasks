@@ -4,12 +4,14 @@
 #include <vector>
 #include <algorithm>
 #include <set>
+#include <queue>
+
 void testRun() {
     int runnersCount = 0;
     std::cin >> runnersCount;
     std::map<int, std::vector<int>> runnersData; //key - time, value - runner
-    std::map<int, int> places; // key - runner, value - place
-    std::vector<int> times;
+    std::vector<int> places(runnersCount +1); // key - runner, value - place
+    std::priority_queue<int, std::vector<int>, std::greater<int>> times;
     for (int i = 1; i <= runnersCount; i++) {
         int time;
         std::cin >> time;
@@ -18,14 +20,15 @@ void testRun() {
             return;
         }
         runnersData[time].push_back(i);
-        times.push_back(time);
+        times.push(time);
     }
-    std::sort(times.begin(), times.end());
     int place = 1;
     int samePlace = 1;
     int prevTime = 0;
     bool first = true;
-    for (auto time : times) {
+    while (!times.empty()) {
+        int time = times.top();
+        times.pop();
         if (first) {
             const auto& runners = runnersData[time];
             for (auto run : runners) {
@@ -44,14 +47,11 @@ void testRun() {
             }
             const auto& runners = runnersData[time];
             for (auto run : runners) {
-                places[run] = place;
+                std::cout << place << " ";
             }
             prevTime = time;
         }
 
-    }
-    for (int i = 1; i <= runnersCount; i++) {
-        std::cout << places[i] << " ";
     }
     std::cout << std::endl;
 }
