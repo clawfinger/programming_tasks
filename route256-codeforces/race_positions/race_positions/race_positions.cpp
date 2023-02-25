@@ -10,8 +10,7 @@ void testRun() {
     int runnersCount = 0;
     std::cin >> runnersCount;
     std::map<int, std::vector<int>> runnersData; //key - time, value - runner
-    std::vector<int> places(runnersCount +1); // key - runner, value - place
-    std::priority_queue<int, std::vector<int>, std::greater<int>> times;
+    std::vector<int> positions(runnersCount + 1);
     for (int i = 1; i <= runnersCount; i++) {
         int time;
         std::cin >> time;
@@ -19,39 +18,40 @@ void testRun() {
             std::cout << 1 << std::endl;
             return;
         }
-        runnersData[time].push_back(i);
-        times.push(time);
-    }
-    int place = 1;
-    int samePlace = 1;
-    int prevTime = 0;
-    bool first = true;
-    while (!times.empty()) {
-        int time = times.top();
-        times.pop();
-        if (first) {
-            const auto& runners = runnersData[time];
-            for (auto run : runners) {
-                places[run] = place;
-            }
-            prevTime = time;
-            first = false;
+        auto it = runnersData.find(time);
+        if (it != runnersData.end()) {
+            it->second.push_back(i);
+            continue;
         }
-        else {
-            if (time - prevTime <= 1) {
-                samePlace++;
+        it = runnersData.find(time - 1);
+        if (it != runnersData.end()) {
+            it->second.push_back(i);
+            continue;
+        }
+        it = runnersData.find(time + 1);
+        if (it != runnersData.end()) {
+            for (auto runner : it->second) {
+                runnersData[time].push_back(runner);
             }
-            else {
-                place += samePlace;
-                samePlace = 1;
-            }
-            const auto& runners = runnersData[time];
-            for (auto run : runners) {
-                std::cout << place << " ";
-            }
-            prevTime = time;
+            runnersData.erase(time + 1);
+            continue;
+        }
+        runnersData[time].push_back(i);
+    }
+
+    int pos = 0;
+    int prev = 1;
+    for (const auto& entry : runnersData) {
+        for (auto runner : entry.second) {
+            positions[runner] = pos + prev;
         }
 
+        prev = entry.second.size();
+        pos++;
+    }
+
+    for (int i = 1; i <= runnersCount; i++) {
+        std::cout << positions[i] << " ";
     }
     std::cout << std::endl;
 }
