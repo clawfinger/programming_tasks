@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{981d45e0-9e27-468b-8bc1-bbd7cf3e3b30}</ProjectGuid>
-    <RootNamespace>divideandconquer</RootNamespace>
+    <ProjectGuid>{2ecdb40a-9e60-4f79-af1a-54f2b0e72191}</ProjectGuid>
+    <RootNamespace>dynamicprogramming</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="binary_search.cpp" />
-    <ClCompile Include="divide_and_conquer.cpp" />
+    <ClCompile Include="dynamic_programming.cpp" />
+    <ClCompile Include="money_change.cpp" />
+    <ClCompile Include="primitive_calculator.cpp" />
+    <ClCompile Include="strings_editing_distance.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="binary_search.h" />
+    <ClInclude Include="money_change.h" />
+    <ClInclude Include="primitive_calculator.h" />
+    <ClInclude Include="strings_editing_distance.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
