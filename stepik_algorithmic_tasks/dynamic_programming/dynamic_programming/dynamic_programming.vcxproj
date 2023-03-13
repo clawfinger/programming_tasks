@@ -127,13 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dynamic_programming.cpp" />
+    <ClCompile Include="homers_burgers.cpp" />
+    <ClCompile Include="longest_common_subsequence.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="money_change.cpp" />
+    <ClCompile Include="Playground.cpp" />
     <ClCompile Include="primitive_calculator.cpp" />
     <ClCompile Include="strings_editing_distance.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="homers_burgers.h" />
+    <ClInclude Include="longest_common_subsequence.h" />
     <ClInclude Include="money_change.h" />
+    <ClInclude Include="Playground.h" />
     <ClInclude Include="primitive_calculator.h" />
     <ClInclude Include="strings_editing_distance.h" />
   </ItemGroup>

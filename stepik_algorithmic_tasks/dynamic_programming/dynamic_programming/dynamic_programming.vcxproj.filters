@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dynamic_programming.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="money_change.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -25,6 +22,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="strings_editing_distance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="longest_common_subsequence.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="homers_burgers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,6 +45,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="strings_editing_distance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="longest_common_subsequence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="homers_burgers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
