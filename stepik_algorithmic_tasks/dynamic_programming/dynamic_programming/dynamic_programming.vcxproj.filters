@@ -36,6 +36,9 @@
     <ClCompile Include="homers_burgers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="buy_cheap_apples.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="money_change.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="homers_burgers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="buy_cheap_apples.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

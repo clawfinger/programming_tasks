@@ -1,5 +1,5 @@
-#include "homers_burgers.h"
+#include "buy_cheap_apples.h"
 
 int main() {
-	int res = burgers(4, 9, 13);
+	double res = buy_iterative({ 3, 2 }, {4.0, 2.5}, 1.75, 4);
 }

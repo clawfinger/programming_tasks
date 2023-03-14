@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="buy_cheap_apples.cpp" />
     <ClCompile Include="homers_burgers.cpp" />
     <ClCompile Include="longest_common_subsequence.cpp" />
     <ClCompile Include="main.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="strings_editing_distance.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="buy_cheap_apples.h" />
     <ClInclude Include="homers_burgers.h" />
     <ClInclude Include="longest_common_subsequence.h" />
     <ClInclude Include="money_change.h" />
