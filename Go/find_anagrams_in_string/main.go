@@ -23,7 +23,7 @@ func isAnagram(s string, p string) bool {
 	return true
 }
 
-func findAnagrams(s string, p string) []int {
+func findAnagramsBad(s string, p string) []int {
 	res := make([]int, 0)
 	for i := 0; i <= len(s)-len(p); i++ {
 		if isAnagram(s[i:i+len(p)], p) {
@@ -33,7 +33,47 @@ func findAnagrams(s string, p string) []int {
 	return res
 }
 
+func compareMaps(window map[byte]int, p map[byte]int) bool {
+	for key, count := range window {
+		if p[key] != count {
+			return false
+		}
+	}
+	return true
+}
+
+func findAnagrams(s string, p string) []int {
+	cacheP := make(map[byte]int)
+	cacheWindow := make(map[byte]int)
+	for _, letter := range p {
+		cacheP[byte(letter)]++
+	}
+	res := []int{}
+	tail := 0
+	forward := 0
+	for forward < len(s) {
+
+		if forward-tail >= len(p) {
+			tailCount := cacheWindow[s[tail]]
+			if tailCount == 1 {
+				delete(cacheWindow, s[tail])
+			} else {
+				cacheWindow[s[tail]]--
+			}
+			tail++
+		}
+		cacheWindow[s[forward]]++
+		if forward >= len(p)-1 {
+			if compareMaps(cacheWindow, cacheP) {
+				res = append(res, tail)
+			}
+		}
+		forward++
+	}
+	return res
+}
+
 func main() {
-	res := findAnagrams("a", "a")
+	res := findAnagrams("abab", "ab")
 	fmt.Println(res)
 }

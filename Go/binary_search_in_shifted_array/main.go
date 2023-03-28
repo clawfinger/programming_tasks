@@ -25,10 +25,31 @@ func search_rec(nums []int, target int, i int, j int) int {
 }
 
 func search(nums []int, target int) int {
-	return search_rec(nums, target, 0, len(nums)-1)
+	left := 0
+	right := len(nums) - 1
+	for left <= right {
+		mid := left + (right-left)/2
+		if target == nums[mid] {
+			return mid
+		}
+		if nums[mid] < target { // going right
+			if nums[right] > target {
+				right = mid - 1
+			} else {
+				left = mid + 1
+			}
+		} else { // going left
+			if nums[left] < target {
+				left = mid + 1
+			} else {
+				right = mid - 1
+			}
+		}
+	}
+	return -1
 }
 
 func main() {
-	res := search([]int{4, 5, 6, 7, 0, 1, 2}, 0)
+	res := search([]int{4, 5, 6, 7, 8, 1, 2, 3}, 8)
 	fmt.Println(res)
 }

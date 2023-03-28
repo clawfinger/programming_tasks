@@ -2,15 +2,31 @@ package main
 
 import "fmt"
 
-func skip(arr []int) {
-	for i := 0; i < len(arr); i++ {
-		if i != 0 && arr[i] == arr[i-1] {
+func removeDuplicates1(nums []int) []int {
+	res := make([]int, 0)
+	for i := 0; i < len(nums); i++ {
+		if i != 0 && nums[i] == nums[i-1] {
 			continue
 		}
-		fmt.Print(arr[i], " ")
+		res = append(res, nums[i])
 	}
+	return res
+}
+
+func removeDuplicates(nums []int) int {
+	paste := 1
+	idx := 1
+	for ; idx < len(nums); idx++ {
+		if nums[idx-1] != nums[idx] {
+			if paste != idx {
+				nums[paste] = nums[idx]
+			}
+			paste++
+		}
+	}
+	return paste
 }
 
 func main() {
-	skip([]int{2, 2, 2, 2, 2, 7})
+	fmt.Println(removeDuplicates([]int{2, 7}))
 }
